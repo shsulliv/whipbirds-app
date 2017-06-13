@@ -151,9 +151,8 @@ public class SolutionIT {
     @Test
     public void notLoggedIn_checkMenus() {
         assertElementPresent(logInMenuId);
-        assertElementPresent(aboutMenuId);
         assertElementNotPresent(logOutMenuId);
-        assertElementNotPresent(myWhipbirdsMenuId);
+        // TODO: complete for all other menus
     }
 
     // Step 2
