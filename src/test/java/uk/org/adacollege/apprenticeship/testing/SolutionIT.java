@@ -105,17 +105,13 @@ public class SolutionIT {
         // - search the web for how to find the current URL with Selenium
     }
 
-    private static void assertPageHeadingEquals(String expectedPageHeading) {
-        // TODO implement this
+    private static void assertElementTextEquals(By selector, String expectedText) {
+        // TODO: implement this method
         // - use assertTitleEquals() as an example pattern to follow
-        // - return when the text of the "h4" tag equals expectedPageHeading
-    }
-
-    private static void assertPopupMessageEquals(String expectedMessage) {
-        // TODO implement this
-        // - use assertTitleEquals() as an example pattern to follow
-        // - return when the text of the popup message tag equals expectedMessage
-        // - the popup message tag can be accessed by its id
+        // - but instead of return driver.getTitle().equals(expectedTitle)
+        //   call driver.findElement() with the selector provided
+        //   and then get the text from that element
+        //   and then check that it equals the expected text
     }
 
     // ========= SCAFFOLDING =========
