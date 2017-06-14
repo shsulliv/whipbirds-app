@@ -215,7 +215,16 @@ public class SolutionIT {
     // Step 7
     @Test
     public void loggedIn_clickLogOutMenu() {
-        // TODO
+        // User must be logged in first
+        logIn(true);
+
+        // Click on the logout menu item
+        wait.until(presenceOfElementLocated(By.id(logOutMenuId)));
+        driver.findElement(By.id(logOutMenuId)).click();
+
+        assertUrlEquals(startUrl + "#!/logout");
+        assertTitleEquals("whipbird: log out");
+        assertElementTextEquals(By.tagName("h4"), "Log out");
     }
 
     // Step 8
