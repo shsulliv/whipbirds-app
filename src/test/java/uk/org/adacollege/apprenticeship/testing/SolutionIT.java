@@ -286,6 +286,6 @@ public class SolutionIT {
         wait.until(presenceOfElementLocated(By.id("delete-whipbird-button-0")));
         driver.findElement(By.id("delete-whipbird-button-0")).click();
 
-        assertElementTextEquals(By.id(popupMessageId), "Whipbird deleted: Travis");
+        assertElementPresent("no-whipbirds-saved");
     }
 }
