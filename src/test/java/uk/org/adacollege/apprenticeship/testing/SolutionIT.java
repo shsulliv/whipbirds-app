@@ -228,8 +228,6 @@ public class SolutionIT {
     @Test
     public void loggedIn_addNewWhipbird() {
         logIn(true);
-        wait.until(presenceOfElementLocated(By.id(myWhipbirdsMenuId)));
-        driver.findElement(By.id(myWhipbirdsMenuId)).click();
 
         wait.until(presenceOfElementLocated(By.id("name")));
         driver.findElement(By.id("name")).sendKeys("Mavis");
