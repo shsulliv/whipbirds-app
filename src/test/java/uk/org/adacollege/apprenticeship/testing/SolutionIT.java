@@ -117,6 +117,12 @@ public class SolutionIT {
         assertTrue(result);
     }
 
+    private static void deleteAllWhipbirds() {
+        for (WebElement element : driver.findElements(By.className("delete-whipbird-button"))) {
+            element.click();
+        }
+    }
+
     // ========= SCAFFOLDING =========
 
     @BeforeClass
@@ -228,6 +234,7 @@ public class SolutionIT {
     @Test
     public void loggedIn_addNewWhipbird() {
         logIn(true);
+        deleteAllWhipbirds();
 
         wait.until(presenceOfElementLocated(By.id("name")));
         driver.findElement(By.id("name")).sendKeys("Mavis");
@@ -240,18 +247,45 @@ public class SolutionIT {
 
         assertElementTextEquals(By.id(popupMessageId), "Whipbird added: Mavis");
 
-        wait.until(presenceOfElementLocated(By.id("whipbird-name-3")));
-        driver.findElement(By.id("whipbird-name-3"));
-        assertElementTextEquals(By.id("whipbird-name-3"), "Mavis");
+        wait.until(presenceOfElementLocated(By.id("whipbird-name-0")));
+        driver.findElement(By.id("whipbird-name-0"));
+        assertElementTextEquals(By.id("whipbird-name-0"), "Mavis");
 
-        wait.until(presenceOfElementLocated(By.id("whipbird-age-3")));
-        driver.findElement(By.id("whipbird-age-3"));
-        assertElementTextEquals(By.id("whipbird-age-3"), "10");
+        wait.until(presenceOfElementLocated(By.id("whipbird-age-0")));
+        driver.findElement(By.id("whipbird-age-0"));
+        assertElementTextEquals(By.id("whipbird-age-0"), "10");
     }
 
     // Step 9
     @Test
     public void loggedIn_addNewWhipbirdThenDeleteIt() {
-        // TODO
+        logIn(true);
+        deleteAllWhipbirds();
+
+        // Create a new whipbird
+        wait.until(presenceOfElementLocated(By.id("name")));
+        driver.findElement(By.id("name")).sendKeys("Travis");
+
+        wait.until(presenceOfElementLocated(By.id("age")));
+        driver.findElement(By.id("age")).sendKeys("13");
+
+        wait.until(presenceOfElementLocated(By.id("add-new-whipbird-button")));
+        driver.findElement(By.id("add-new-whipbird-button")).click();
+
+        assertElementTextEquals(By.id(popupMessageId), "Whipbird added: Travis");
+
+        wait.until(presenceOfElementLocated(By.id("whipbird-name-0")));
+        driver.findElement(By.id("whipbird-name-0"));
+        assertElementTextEquals(By.id("whipbird-name-0"), "Travis");
+
+        wait.until(presenceOfElementLocated(By.id("whipbird-age-0")));
+        driver.findElement(By.id("whipbird-age-0"));
+        assertElementTextEquals(By.id("whipbird-age-0"), "13");
+
+        // Delete the whipbird
+        wait.until(presenceOfElementLocated(By.id("delete-whipbird-button-0")));
+        driver.findElement(By.id("delete-whipbird-button-0")).click();
+
+        assertElementTextEquals(By.id(popupMessageId), "Whipbird deleted: Travis");
     }
 }
