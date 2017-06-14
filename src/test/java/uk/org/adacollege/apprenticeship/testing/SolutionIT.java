@@ -215,10 +215,7 @@ public class SolutionIT {
     // Step 7
     @Test
     public void loggedIn_clickLogOutMenu() {
-        // User must be logged in first
         logIn(true);
-
-        // Click on the logout menu item
         wait.until(presenceOfElementLocated(By.id(logOutMenuId)));
         driver.findElement(By.id(logOutMenuId)).click();
 
@@ -230,7 +227,28 @@ public class SolutionIT {
     // Step 8
     @Test
     public void loggedIn_addNewWhipbird() {
-        // TODO
+        logIn(true);
+        wait.until(presenceOfElementLocated(By.id(myWhipbirdsMenuId)));
+        driver.findElement(By.id(myWhipbirdsMenuId)).click();
+
+        wait.until(presenceOfElementLocated(By.id("name")));
+        driver.findElement(By.id("name")).sendKeys("Mavis");
+
+        wait.until(presenceOfElementLocated(By.id("age")));
+        driver.findElement(By.id("age")).sendKeys("10");
+
+        wait.until(presenceOfElementLocated(By.id("add-new-whipbird-button")));
+        driver.findElement(By.id("add-new-whipbird-button")).click();
+
+        assertElementTextEquals(By.id(popupMessageId), "Whipbird added: Mavis");
+
+        wait.until(presenceOfElementLocated(By.id("whipbird-name-3")));
+        driver.findElement(By.id("whipbird-name-3"));
+        assertElementTextEquals(By.id("whipbird-name-3"), "Mavis");
+
+        wait.until(presenceOfElementLocated(By.id("whipbird-age-3")));
+        driver.findElement(By.id("whipbird-age-3"));
+        assertElementTextEquals(By.id("whipbird-age-3"), "10");
     }
 
     // Step 9
